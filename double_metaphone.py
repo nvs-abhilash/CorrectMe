@@ -1,3 +1,8 @@
+# This implementation requires you to install fuzzy.
+# You can download it from https://pypi.python.org/pypi/Fuzzy (Recommended version 1.1)
+# Install by typing: "sudo pip install Fuzzy-<version>.tar.gz"
+
+
 import fuzzy
 
 def load_metaphone_dictionary():
@@ -6,7 +11,7 @@ def load_metaphone_dictionary():
 
     with open("google-10000-english-no-swears.txt", "r") as file:
         for word in file:
-            word = word.strip()
+            word = word.strip()     # To strip newline characters from the end of the word.
             dmeta_result = dmeta(word)
 
             if dmeta_result[0] is not None:
@@ -27,4 +32,3 @@ def load_metaphone_dictionary():
 # if __name__ == "__main__":
 #     meta_dict = load_metaphone_dictionary()
 #     print meta_dict
-

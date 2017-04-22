@@ -20,6 +20,7 @@ def levenshtein_distance(dictionaryString, inputString, prevResult, inputStringP
     return levenshtein_distance(dictionaryString, inputString, newResult, inputStringPos)
 
 
+# Call this function when making API calls.
 def get_edit_distance(dictionaryString, inputString):
     dictionaryString = lower(dictionaryString)
     inputString = lower(inputString)
