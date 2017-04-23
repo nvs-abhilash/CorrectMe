@@ -5,11 +5,11 @@
 
 import fuzzy
 
-def load_metaphone_dictionary():
+def load_metaphone_dictionary(path):
     metaphone_dictionary = {}
     dmeta = fuzzy.DMetaphone()
 
-    with open("google-10000-english-no-swears.txt", "r") as file:
+    with open(path, "r") as file:
         for word in file:
             word = word.strip()     # To strip newline characters from the end of the word.
             dmeta_result = dmeta(word)
