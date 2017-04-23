@@ -1,5 +1,5 @@
 INSERT_COST =  1
-SUBSTITUTION_COST =  2
+SUBSTITUTION_COST =  1
 DELETE_COST =  1
 
 
@@ -22,8 +22,8 @@ def levenshtein_distance(dictionaryString, inputString, prevResult, inputStringP
 
 # Call this function when making API calls.
 def get_edit_distance(dictionaryString, inputString):
-    dictionaryString = lower(dictionaryString)
-    inputString = lower(inputString)
+    dictionaryString = dictionaryString.lower()
+    inputString = inputString.lower()
 
     if(dictionaryString == inputString):
         edit_distance = 0
@@ -36,5 +36,5 @@ def get_edit_distance(dictionaryString, inputString):
     return edit_distance
 
 
-#  if __name__ == "__main__":
-#      print get_edit_distance("abc", "adcb")
+# if __name__ == "__main__":
+#     print get_edit_distance("gumbo", "gambol")
