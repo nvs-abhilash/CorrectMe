@@ -36,7 +36,7 @@ def getSuggestion (word, tree, meta_dict):
         if dmeta_result[1] is not None:
             key2 = dmeta_result[1]
             try:
-                wordsList2.append (meta_dict[key2])
+                wordsList2.extend (meta_dict[key2])
             except KeyError:
                 pass
 
