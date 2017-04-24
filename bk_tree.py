@@ -111,15 +111,16 @@ def dict_words(dictfile="./google-10000-english-no-swears.txt"):
     "Return an iterator that produces words in the given dictionary."
     return ifilter(len, imap(str.strip, open(dictfile)))
 
+
 # if __name__ == "__main__":
 
 #     t = time.time()
 #     tree = BKTree(ld.get_edit_distance, dict_words('./google-10000-english-no-swears.txt'))
-#     print tree.query("more", 2)
+#     print tree.query("more", 1)
 #     print "time: ", (time.time() - t)
 
     
 #     t = time.time()
 #     tree = BKTree(levenshtein, dict_words('./google-10000-english-no-swears.txt'))
-#     print tree.query("more", 2)
+#     print tree.query("more", 1)
 #     print "time: ", (time.time() - t)
