@@ -118,12 +118,11 @@ class TextScreen(GridLayout):
                     elif (len (self.prev1) >= 2):
                         self.but_4.text = self.prev2[1]
                 else:
-                    if (len (self.prev1) == 0):
-                        self.but_1.text = self.prev2[0]
-                        self.but_2.text = self.prev2[1]
-                        self.but_3.text = self.prev2[2]
-                        self.but_4.text = self.prev1[0]
-
+                    self.but_1.text = self.prev2[0]
+                    self.but_2.text = self.prev2[1]
+                    self.but_3.text = self.prev2[2]
+                    self.but_4.text = self.prev1[0]
+                    
 
                 # self.but_1.text = self.prev1[len(self.prev2) - 1]
                 # self.but_2.text = self.prev2[len(self.prev2) - 2]
