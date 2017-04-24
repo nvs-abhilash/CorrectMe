@@ -1,4 +1,3 @@
-from kivy.uix.popup import Popup
 from kivy.app import App
 #kivy.require("1.8.0")
 from kivy.uix.label import Label
@@ -29,19 +28,19 @@ class TextScreen(GridLayout):
         self.add_widget(self.health_label)
         # self.add_widget(Button(text="Auth User and Password", on_press=self.auth))
         self.but_1 = Button(id="but_1", text="but_1")
-        self.but_1.bind(on_press=lambda a:self.auth(self.but_1.text))
+        self.but_1.bind(on_press=lambda a: self.auth(self.but_1.text))
         self.add_widget(self.but_1)
 
         self.but_2 = Button(id="but_2", text="but_2")
-        self.but_2.bind(on_press=lambda a:self.auth(self.but_2.text))
+        self.but_2.bind(on_press=lambda a: self.auth(self.but_2.text))
         self.add_widget(self.but_2)
 
         self.but_3 = Button(id="but_3", text="but_3")
-        self.but_3.bind(on_press=lambda a:self.auth(self.but_3.text))
+        self.but_3.bind(on_press=lambda a: self.auth(self.but_3.text))
         self.add_widget(self.but_3)
 
         self.but_4 = Button(id="but_4", text="but_4")
-        self.but_4.bind(on_press=lambda a:self.auth(self.but_4.text))
+        self.but_4.bind(on_press=lambda a: self.auth(self.but_4.text))
         self.add_widget(self.but_4)
 
 
@@ -49,10 +48,10 @@ class TextScreen(GridLayout):
     def auth(self, bText):
         print "auth called---"
         print self.username.text
-        words = self.username.text.split(" ") 
+        words = self.username.text.split(" ")
         words = words[0:-1]
-        str1 = ' '.join(words)
-        self.username.text = str1 +" " +bText
+        str1 = ''.join(words)
+        self.username.text = str1 + " " + bText
 
 
 
