@@ -1,4 +1,3 @@
-from kivy.uix.popup import Popup
 from kivy.app import App
 #kivy.require("1.8.0")
 from kivy.uix.label import Label
@@ -62,6 +61,7 @@ class TextScreen(GridLayout):
 
         self.but_4 = Button(id="but_4", text="")
         self.but_4.bind(on_press=lambda a:self.auth(self.but_4.text))
+
         self.add_widget(self.but_4)
 
 
@@ -69,10 +69,10 @@ class TextScreen(GridLayout):
     def auth(self, bText):
         print "auth called---"
         print self.username.text
-        words = self.username.text.split(" ") 
+        words = self.username.text.split(" ")
         words = words[0:-1]
-        str1 = ' '.join(words)
-        self.username.text = str1 +" " +bText
+        str1 = ''.join(words)
+        self.username.text = str1 + " " + bText
 
 
     def on_text(self,instance, value):
