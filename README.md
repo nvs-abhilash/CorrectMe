@@ -1,7 +1,7 @@
 # CorrectMe
 #### A context based auto-correction python package
 
-CorrectMe is a context based auto-correction python package, also available with a GUI for demo purposes. It learns from the context what could be the correct words to recommend.
+CorrectMe is a context based auto-correction python package, also available with a GUI for demo purposes. It recommends correct words for misspellings by learning from the context.
 
 Currently the project is in very early stages, and no stable behavior can be expected.
 
@@ -13,7 +13,7 @@ Please use `Python3.x` for working with the package.
 
 ### 1. Kivy installation
 
-Installation of Kivy is buggy, only working way for the author is given bellow. Please share other methods if found working with the project.
+Installation of Kivy is buggy, only working way for the author is given below. Please share other methods if found working with the project.
 
 Installation using sources seems to work fine with version `kivy==1.10.1`
 
@@ -29,7 +29,7 @@ Currently no installation option is provided. To use the package `cd` into the r
 
 ## Current status of the project
 
-The project is in very early stages, and the packages don't have clear naming conventions, or lacks documentations. This project was part of authors' Information Retrieval project. Work needs to be done to make it an useful python package.
+The project is in very early stages, and the packages don't have clear naming conventions, or lack documentation. This project was part of authors' Information Retrieval project. Work needs to be done to make it a useful python package.
 
 Contributions to this project in the form of opening relevant issues, submitting PRs for new code or documentation is highly welcomed.  
 
@@ -37,7 +37,7 @@ Continuous development on this project cannot be guarenteed at the moment as the
 
 ## Algorithms used in the project
 
-The idea is to make a content based correction package, where the package would do auto-corrections, give suggestions for corrections as well.
+The idea is to make a context based correction package, where the package would perform auto-corrections, provide suggestions for corrections as well.
 
 * Currently we have used bk_tree for finding closest words using Minimum Edit Distance.
 * Double metaphones to get closest words according to phonetics.
@@ -52,4 +52,4 @@ The GUI is very naive and not at all well documented. Lots of redundant codes ar
 
 ## Documentation
 
-Currently lots of things are not documented well. Documentations explaining how to use the code base, simple tutorials explaing concepts are also useful and are definitly on the TODO lists of the authors. Any help is highly appreciated. Opening an issue for the same or submitting PRs are useful. I know said it many times now ;)
+Currently lots of things are not documented well. Documentations explaining how to use the code base, simple tutorials explaining concepts are also useful and are definitly on the TODO lists of the authors. Any help is highly appreciated. Opening an issue for the same or submitting PRs are useful. I know said it many times now ;)
