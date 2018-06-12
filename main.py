@@ -4,11 +4,11 @@
 
 from correctme import bk_tree as bt
 from correctme import double_metaphone as dm
-from correctme import levenshtein_distance as ld
+from correctme import edit_distance as ed
 import fuzzy
 
 def initializeApp ():
-    tree = bt.BKTree(ld.get_edit_distance, bt.dict_words('data/google-10000-english-no-swears.txt'))
+    tree = bt.BKTree(ed.get_edit_distance, bt.dict_words('data/google-10000-english-no-swears.txt'))
     meta_dict = dm.load_metaphone_dictionary('data/google-10000-english-no-swears.txt')
 
     return [tree, meta_dict]
