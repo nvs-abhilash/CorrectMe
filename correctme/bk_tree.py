@@ -56,7 +56,7 @@ class BKTree:
             results = []
             if d <= n:
                 results.append( (d, pword) )
-                
+
             for i in range(d-n, d+n+1):
                 child = children.get(i)
                 if child is not None:
@@ -76,7 +76,7 @@ def brute_query(word, words, distfn, n):
     distfn: a binary function that returns the distance between a
     `word' and an item in `words'.
     n: an integer that specifies the distance of a matching word
-    
+
     """
     return [i for i in words
             if distfn(i, word) <= n]
@@ -119,7 +119,7 @@ def dict_words(dictfile="./google-10000-english-no-swears.txt"):
 #     print tree.query("more", 1)
 #     print "time: ", (time.time() - t)
 
-    
+
 #     t = time.time()
 #     tree = BKTree(levenshtein, dict_words('./google-10000-english-no-swears.txt'))
 #     print tree.query("more", 1)
