@@ -27,9 +27,9 @@ class LoginScreen(GridLayout):
             lastWord = value.split(' ')[-1]
             if lastWord:
                 self.prev =  sm.getSuggestion(lastWord, self.tree, self.meta_dict)
-                print self.prev
+                print(self.prev)
             else:
-                print self.prev
+                print(self.prev)
 
 
 

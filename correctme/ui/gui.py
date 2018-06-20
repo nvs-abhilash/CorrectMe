@@ -53,8 +53,8 @@ class TextScreen(GridLayout):
         self.add_widget(self.but_4)
 
     def auth(self, bText):
-        print "auth called---"
-        print self.username.text
+        print("auth called---")
+        print(self.username.text)
         words = self.username.text.split(" ")
         words = words[0:-1]
         str1 = ''.join(words)
@@ -111,30 +111,30 @@ class TextScreen(GridLayout):
                     self.but_3.text = self.prev2[2]
                     self.but_4.text = self.prev1[0]
 
-            print "BK tree suggestions\n"
-            print self.prev1
-            print "\n"
+            print("BK tree suggestions\n")
+            print(self.prev1)
+            print("\n")
 
-            print "Double Metaphone suggestions\n"
-            print self.prev2
-            print "\n"
+            print("Double Metaphone suggestions\n")
+            print(self.prev2)
+            print("\n")
 
-            print "Intersection of both\n"
-            print self.prev3
-            print "---------------------------------------------------------------------------------------------------------------------------------------\n"
+            print("Intersection of both\n")
+            print(self.prev3)
+            print("---------------------------------------------------------------------------------------------------------------------------------------\n")
 
         else:
-            print "BK tree suggestions\n"
-            print self.prev1
-            print "\n"
+            print("BK tree suggestions\n")
+            print(self.prev1)
+            print("\n")
 
-            print "Double Metaphone suggestions\n"
-            print self.prev2
-            print "\n"
+            print("Double Metaphone suggestions\n")
+            print(self.prev2)
+            print("\n")
 
-            print "Intersection of both\n"
-            print self.prev3
-            print "---------------------------------------------------------------------------------------------------------------------------------------\n"
+            print("Intersection of both\n")
+            print(self.prev3)
+            print("---------------------------------------------------------------------------------------------------------------------------------------\n")
 
 
 class SimpleKivy(App):
