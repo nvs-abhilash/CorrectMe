@@ -57,7 +57,7 @@ class TextScreen(GridLayout):
         print(self.username.text)
         words = self.username.text.split(" ")
         words = words[0:-1]
-        str1 = ''.join(words)
+        str1 = ' '.join(words)
         self.username.text = str1 + " " + bText
 
     def on_text(self, instance, value):
