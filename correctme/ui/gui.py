@@ -140,7 +140,7 @@ class TextScreen(GridLayout):
 class SimpleKivy(App):
     def __init__(self, dataset):
         super(SimpleKivy, self).__init__()
-        self.__dataset = dataset
+        self._dataset = dataset
 
     def build(self):
-        return TextScreen(self.__dataset)
+        return TextScreen(self._dataset)
