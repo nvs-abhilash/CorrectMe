@@ -1,6 +1,6 @@
 """ BK Tree implementation """
 
-from itertools import imap, ifilter
+
 
 
 class BKTree:
@@ -20,7 +20,7 @@ class BKTree:
         self.distfn = distfn
 
         it = iter(words)
-        root = it.next()
+        root = next(it)
         self.tree = (root, {})
 
         for i in it:
@@ -83,7 +83,7 @@ def brute_query(word, words, distfn, n):
 def maxdepth(tree, count=0):
     _, children = tree
     if len(children):
-        return max(maxdepth(i, count + 1) for i in children.values())
+        return max(maxdepth(i, count + 1) for i in list(children.values()))
     else:
         return count
 
@@ -92,7 +92,7 @@ def maxdepth(tree, count=0):
 
 def levenshtein(s, t):
     m, n = len(s), len(t)
-    d = [range(n + 1)]
+    d = [list(range(n + 1))]
     d += [[i] for i in range(1, m + 1)]
     for i in range(0, m):
         for j in range(0, n):
@@ -108,4 +108,4 @@ def levenshtein(s, t):
 
 def dict_words(dictfile):
     "Return an iterator that produces words in the given dictionary."
-    return ifilter(len, imap(str.strip, open(dictfile)))
+    return filter(len, map(str.strip, open(dictfile)))
