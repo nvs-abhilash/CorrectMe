@@ -13,9 +13,10 @@ from correctme import edit_distance as ed
 
 def initializeApp(dataset):
     tree = bt.BKTree(ed.get_edit_distance, bt.dict_words(dataset))
-    meta_dict = dm.load_metaphone_dictionary(dataset)
+    double_metaphone = dm.doubleMetaphone(dataset)
+    double_metaphone.load_metaphone_dictionary()
 
-    return [tree, meta_dict]
+    return [tree, double_metaphone.metaphone_dictionary]
 
 
 def getSuggestion(word, tree, meta_dict):
