@@ -10,31 +10,31 @@ class personalizedDictionary:
     totalRegisteredUsers = 0
 
     def __init__(self, userName):
-        self.__name = userName
+        self._name = userName
         self.loadDictionary()
         personalizedDictionary.totalRegisteredUsers += 1
 
     def getDictionary(self):
-        return self.__dictionary
+        return self._dictionary
 
     def getName(self):
-        return self.__name
+        return self._name
 
     def addToDictionary(self, word):
-        if word in self.__dictionary:
-            self.__dictionary[word] += 1
+        if word in self._dictionary:
+            self._dictionary[word] += 1
         else:
-            self.__dictionary[word] = 1
+            self._dictionary[word] = 1
 
     def saveDictionary(self):
         dir_path = os.path.join("user_dictionaries")
-        with open(os.path.join(dir_path, self.__name + ".dat"), "wb") as file:
-            pickle.dump(self.__dictionary, file)
+        with open(os.path.join(dir_path, self._name + ".dat"), "wb") as file:
+            pickle.dump(self._dictionary, file)
 
     def loadDictionary(self):
         dir_path = os.path.join("user_dictionaries")
         try:
-            with open(os.path.join(dir_path, self.__name + ".dat"), "rb") as file:
-                self.__dictionary = pickle.load(file)
+            with open(os.path.join(dir_path, self._name + ".dat"), "rb") as file:
+                self._dictionary = pickle.load(file)
         except IOError:
-            self.__dictionary = {}
+            self._dictionary = {}
