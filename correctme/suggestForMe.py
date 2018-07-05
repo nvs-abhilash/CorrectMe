@@ -4,6 +4,8 @@
 3. Combine the results
 """
 
+from functools import partial
+
 import fuzzy
 
 from correctme import bk_tree as bt
@@ -12,10 +14,13 @@ from correctme import edit_distance as ed
 
 
 def initializeApp(dataset):
-    tree = bt.BKTree(ed.get_edit_distance, bt.dict_words(dataset))
-    meta_dict = dm.load_metaphone_dictionary(dataset)
+    ed_ob = ed.editDistance()
+    dist_func = partial(ed_ob.get_edit_distance)
+    tree = bt.BKTree(dist_func, bt.dict_words(dataset))
+    double_metaphone = dm.doubleMetaphone(dataset)
+    double_metaphone.load_metaphone_dictionary()
 
-    return [tree, meta_dict]
+    return [tree, double_metaphone.metaphone_dictionary]
 
 
 def getSuggestion(word, tree, meta_dict):

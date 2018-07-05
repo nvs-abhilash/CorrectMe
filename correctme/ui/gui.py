@@ -75,4 +75,4 @@ class CorrectMeApp(App):
         self.__dataset = dataset
     
     def build(self):
-        return CorrectMeView(self.__dataset)
+        return CorrectMeView(self._dataset)

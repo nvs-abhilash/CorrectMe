@@ -1,25 +1,23 @@
+from collections import defaultdict
+
 import fuzzy
 
 
-def load_metaphone_dictionary(path):
-    metaphone_dictionary = {}
-    dmeta = fuzzy.DMetaphone()
+class doubleMetaphone:
+    _dmeta = fuzzy.DMetaphone()
 
-    with open(path, "r") as file:
-        for word in file:
-            word = word.strip()  # To strip newline characters from the end of the word.
-            dmeta_result = dmeta(word)
+    def __init__(self, dataset_file):
+        self.metaphone_dictionary = defaultdict(list)
+        self._dataset_file = dataset_file
 
-            if dmeta_result[0] is not None:
-                if dmeta_result[0] in metaphone_dictionary:
-                    metaphone_dictionary[dmeta_result[0]].append(word)
-                else:
-                    metaphone_dictionary[dmeta_result[0]] = [word]
+    def load_metaphone_dictionary(self):
+        with open(self._dataset_file, "r") as dataset:
+            for word in dataset:
+                word = word.strip()  # To strip newline characters from the end of the word.
+                dmeta_result = self._dmeta(word)
 
-            if dmeta_result[1] is not None:
-                if dmeta_result[1] in metaphone_dictionary:
-                    metaphone_dictionary[dmeta_result[1]].append(word)
-                else:
-                    metaphone_dictionary[dmeta_result[1]] = [word]
+                if dmeta_result[0]:
+                    self.metaphone_dictionary[dmeta_result[0]].append(word)
 
-        return metaphone_dictionary
+                if dmeta_result[1]:
+                    self.metaphone_dictionary[dmeta_result[1]].append(word)

@@ -1,8 +1,6 @@
 """ BK Tree implementation """
 
 
-
-
 class BKTree:
     """ Class of BK Tree """
 
