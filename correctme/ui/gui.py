@@ -1,7 +1,6 @@
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.properties import ObjectProperty
-from kivy.uix.widget import Widget
 
 from correctme import suggestForMe as sm
 
@@ -14,7 +13,7 @@ class CorrectMeView(GridLayout):
     button4 = ObjectProperty(None)
 
     def __init__(self, dataset, **kwargs):
-        super(CorrectMeView, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.tree, self.meta_dict = sm.initializeApp(dataset)
         self.buttons = [self.button1, self.button2, self.button3, self.button4]
 
@@ -71,7 +70,7 @@ class CorrectMeView(GridLayout):
 
 class CorrectMeApp(App):
     def __init__(self, dataset, **kwargs):
-        super(CorrectMeApp, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self._dataset = dataset
     
     def build(self):
