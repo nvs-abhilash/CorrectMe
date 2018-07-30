@@ -1,0 +1,49 @@
+#:kivy 1.10.0
+
+<Label>:
+	size: self.texture_size
+
+<Button>:
+	font_size: 30
+	text: 'z'
+
+
+<TextInput>:
+	font_size: 30
+
+<CorrectMeView>:
+	input_text: input_text
+	button1: button1
+	button2: button2
+	button3: button3
+	button4: button4
+
+	rows: 6
+	cols: 1
+	
+	Label:
+		text: 'CorrectMe'
+		font_size: 48
+
+	
+	TextInput:
+		id: input_text
+		multiline: False
+		on_text: root.on_text(self.text)
+	
+	Button:
+		id: button1
+		on_release: root.on_release(self.text)
+		
+	Button:
+		id: button2
+		on_release: root.on_release(self.text)
+	
+	Button:
+		id: button3
+		on_release: root.on_release(self.text)
+	
+	Button:
+		id: button4
+		on_release: root.on_release(self.text)
+	

@@ -1,146 +1,77 @@
-from os.path import join, dirname
-
 from kivy.app import App
-from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
-from kivy.uix.textinput import TextInput
-from kivy.uix.button import Button
-from kivy.lang import Builder
-
-Builder.load_file(join(dirname(__file__), r'SimpleKivy.kv'))
+from kivy.properties import ObjectProperty
 
 from correctme import suggestForMe as sm
 
 
-class TextScreen(GridLayout):
-    prev1 = []
-    prev2 = []
-    prev3 = []
+class CorrectMeView(GridLayout):
+    input_text = ObjectProperty(None)
+    button1 = ObjectProperty(None)
+    button2 = ObjectProperty(None)
+    button3 = ObjectProperty(None)
+    button4 = ObjectProperty(None)
 
     def __init__(self, dataset, **kwargs):
-        super(TextScreen, self).__init__(**kwargs)
-        self.rows = 6
-        self.cols = 1
-        self.sentence = ""
-
-        self.health_label = Label(text="CorrectMe is here!!!")
-        self.add_widget(self.health_label)
-        self.username = TextInput(multiline=False)
-        self.username.bind(text=self.on_text)  # specify the callback function when the text changes for the textinput
-        self.username.keyboard_suggestions = True
-        self.add_widget(self.username)
+        super().__init__(**kwargs)
         self.tree, self.meta_dict = sm.initializeApp(dataset)
+        self.buttons = [self.button1, self.button2, self.button3, self.button4]
 
-        self.intersection = GridLayout(cols=2)
-        self.union = GridLayout(cols=1)
-        self.user_dic = GridLayout(cols=1)
-
-        self.but_1 = Button(id="but_1", text="")
-        self.but_1.bind(on_press=lambda a: self.auth(self.but_1.text))
-        self.add_widget(self.but_1)
-
-        self.but_2 = Button(id="but_2", text="")
-        self.but_2.bind(on_press=lambda a: self.auth(self.but_2.text))
-        self.add_widget(self.but_2)
-
-        self.but_3 = Button(id="but_3", text="")
-        self.but_3.bind(on_press=lambda a: self.auth(self.but_3.text))
-        self.add_widget(self.but_3)
-
-        self.but_4 = Button(id="but_4", text="")
-        self.but_4.bind(on_press=lambda a: self.auth(self.but_4.text))
-
-        self.add_widget(self.but_4)
-
-    def auth(self, bText):
-        print("auth called---")
-        print(self.username.text)
-        words = self.username.text.split(" ")
-        words = words[0:-1]
-        str1 = ' '.join(words)
-        self.username.text = str1 + " " + bText
-
-    def on_text(self, instance, value):
-        lastWord = value.split(' ')[-1]
-        if lastWord:
-            self.prev1, self.prev2, self.prev3 = sm.getSuggestion(lastWord, self.tree, self.meta_dict)
-
-            if len(self.prev3) >= 4:
-                self.but_1.text = self.prev3[0]
-                self.but_2.text = self.prev3[1]
-                self.but_3.text = self.prev3[2]
-                self.but_4.text = self.prev3[3]
-            if len(self.prev1) == 0:
-                self.but_1.text = self.prev2[0]
-                self.but_2.text = self.prev2[1]
-                self.but_3.text = self.prev2[2]
-                self.but_4.text = self.prev2[3]
-
-            if len(self.prev2) == 0:
-                self.but_1.text = self.prev1[0]
-                self.but_2.text = self.prev1[1]
-                self.but_3.text = self.prev1[2]
-                self.but_4.text = self.prev1[3]
-
-            else:
-                if len(self.prev3) == 3:
-                    self.but_1.text = self.prev3[0]
-                    self.but_2.text = self.prev3[1]
-                    self.but_3.text = self.prev3[2]
-                    self.but_4.text = self.prev2[0]
-
-                if len(self.prev3) == 2:
-                    self.but_1.text = self.prev3[0]
-                    self.but_2.text = self.prev3[1]
-                    self.but_3.text = self.prev1[0]
-                    self.but_4.text = self.prev2[0]
-
-                if len(self.prev3) == 1:
-                    self.but_1.text = self.prev3[0]
-                    self.but_2.text = self.prev1[0]
-                    self.but_3.text = self.prev2[0]
-
-                    if len(self.prev2) >= 2:
-                        self.but_4.text = self.prev2[1]
-                    elif len(self.prev1) >= 2:
-                        self.but_4.text = self.prev2[1]
-
-                else:
-                    self.but_1.text = self.prev2[0]
-                    self.but_2.text = self.prev2[1]
-                    self.but_3.text = self.prev2[2]
-                    self.but_4.text = self.prev1[0]
-
-            print("BK tree suggestions\n")
-            print(self.prev1)
-            print("\n")
-
-            print("Double Metaphone suggestions\n")
-            print(self.prev2)
-            print("\n")
-
-            print("Intersection of both\n")
-            print(self.prev3)
-            print("---------------------------------------------------------------------------------------------------------------------------------------\n")
-
+    def on_release(self, text):
+        words = self.input_text.text.strip().split()
+        if len(words) > 0:
+            words[-1] = text
         else:
-            print("BK tree suggestions\n")
-            print(self.prev1)
-            print("\n")
+            words.append(text)
+        
+        self.input_text.text = ' '.join(words).strip()
+        self.input_text.focus = True
 
-            print("Double Metaphone suggestions\n")
-            print(self.prev2)
-            print("\n")
+    def on_text(self, text):
+        words = text.strip().split(' ')
+        last_word = words[-1]
+    
+        bktree_words, metaphone_words, intersect_words = sm.getSuggestion(last_word, self.tree, self.meta_dict)
 
-            print("Intersection of both\n")
-            print(self.prev3)
-            print("---------------------------------------------------------------------------------------------------------------------------------------\n")
+        # Need to form a list of four top words.
+        # TODO: Need to change this algo in future for n-grams.
+        i = 0
+        for word in intersect_words:
+            if i >= 4:
+                break
+            self.buttons[i].text = word 
+            i += 1
+        
+        for word in bktree_words:
+            if i >= 4:
+                break
+            self.buttons[i].text = word
+            i += 1
+
+        for word in metaphone_words:
+            if i >= 4:
+                break
+            self.buttons[i].text = word
+        
+        print("BK tree suggestions")
+        print(bktree_words)
+        print('\n')
+
+        print("Double Metaphone suggestions")
+        print(metaphone_words)
+        print('\n')
+
+        print("Intersection of both")
+        print(intersect_words)
+        print('\n')
+
+        print('-' * 50)
 
 
-class SimpleKivy(App):
-    def __init__(self, dataset):
-        super(SimpleKivy, self).__init__()
+class CorrectMeApp(App):
+    def __init__(self, dataset, **kwargs):
+        super().__init__(**kwargs)
         self._dataset = dataset
-
+    
     def build(self):
-        return TextScreen(self._dataset)
+        return CorrectMeView(self._dataset)
