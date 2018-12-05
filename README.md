@@ -11,21 +11,21 @@ All contributions are welcomed :)
 
 Please use `Python3.x` for working with the package.
 
-### 1. Kivy installation
+Creating a virtual environment is recommended as the code is in pre-release. Below steps are shown for conda environment.
 
-Installation of Kivy is buggy, only working way for the author is given below. Please share other methods if found working with the project.
+```bash
+conda create -n cm_env python=3.6 pip
+source activate cm_env # activate cm_env for windows
+cd CorrectMe # The cloned repository directory
+pip install .
+```
 
-Installation using sources seems to work fine with version `kivy==1.10.1`
+To test your installation, move the `main.py` file from the repository to another location, and run it.
 
-Please follow the following link: [Development Version](https://kivy.org/docs/installation/installation.html#installation-devel)
-
-### 2. Fuzzy installation
-
-`pip install fuzzy`
-
-### 3. CorrectMe installation
-
-Currently no installation option is provided. To use the package `cd` into the root directory and import the packages.
+```bash
+python main.py
+```
+Note: moving is required as otherwise, `correctme` will be imported from the repository itself.
 
 ## Current status of the project
 
