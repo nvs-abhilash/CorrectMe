@@ -20,10 +20,17 @@ cd CorrectMe # The cloned repository directory
 pip install .
 ```
 
-To test your installation, move the `main.py` file from the repository to another location, and run it.
+Importing the package
 
 ```bash
-python main.py
+import correctme
+```
+
+Testing the installation
+
+```bash
+import Correctme    # Mind the 'C'
+Correctme.run()
 ```
 Note: moving is required as otherwise, `correctme` will be imported from the repository itself.
 

@@ -22,7 +22,7 @@ setup(
 
     url='https://github.com/nvs-abhilash/CorrectMe',  # Optional
 
-    author='Piyush Jaiswal and NVS Abhilash',  # Optional
+    author='NVS Abhilash and Piyush Jaiswal',  # Optional
     
     # Classifiers help users find your project by categorizing it.
     #
@@ -50,16 +50,16 @@ setup(
                                     'user_dictionaries']),  # Required
 
     install_requires=['fuzzy', 'kivy==1.10.1'],  # Optional
+    
+    include_package_data=True,
+    
+    py_modules=['Correctme']   # Optional
 
-    include_package_data=True
     # May need in the future
     # extras_require={  # Optional
     #     'dev': ['check-manifest'],
     #     'test': ['coverage'],
     # },
-
-    # TODO: Make use of this to provide a default script 
-    #data_files=[('google_10K-en.txt', ['data/google-10000-english-no-swears.txt'])],  # Optional
 
     # May need in future
     # entry_points={  # Optional

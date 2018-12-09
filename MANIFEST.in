@@ -1,1 +1,2 @@
 include correctme/ui/correctme.kv
+include correctme/data/google-10000-english-no-swears.txt
