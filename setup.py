@@ -52,8 +52,12 @@ setup(
     install_requires=['fuzzy', 'kivy==1.10.1'],  # Optional
     
     include_package_data=True,
-    
-    py_modules=['Correctme']   # Optional
+
+    entry_points={
+        'console_scripts': [
+            'correctme-gui = correctme.bin.Correctme:run'
+        ]
+    },
 
     # May need in the future
     # extras_require={  # Optional
