@@ -20,19 +20,19 @@ cd CorrectMe # The cloned repository directory
 pip install .
 ```
 
-Importing the package
+### Importing the package
 
-```bash
+```python
 import correctme
 ```
 
-Testing the installation
+### Testing the installation
 
+Type the below command in the terminal:
 ```bash
-import Correctme    # Mind the 'C'
-Correctme.run()
+correctme-gui
 ```
-Note: moving is required as otherwise, `correctme` will be imported from the repository itself.
+This will pop up the GUI for the project, and you would also see the predictions in the terminal.
 
 ## Current status of the project
 
