@@ -1,28 +1,18 @@
-def levenshtein_distance(dictionaryString, inputString):
+# http://en.wikibooks.org/wiki/Algorithm_implementation/Strings/Levenshtein_distance#Python
+def levenshtein_distance(s, t):
+    m, n = len(s), len(t)
+    d = [list(range(n + 1))]
+    d += [[i] for i in range(1, m + 1)]
+    for i in range(0, m):
+        for j in range(0, n):
+            cost = 1
+            if s[i] == t[j]: cost = 0
 
-    def levenshtein_distance_helper(dictionaryString, inputString, prevResult, inputStringPos):
-        if inputStringPos >= len(inputString):
-            return prevResult[len(dictionaryString)]
-
-        newResult = []
-        newResult.append(inputStringPos + 1)
-
-        for i in range(1, len(dictionaryString) + 1):
-            if dictionaryString[i - 1] == inputString[inputStringPos]:
-                newResult.append(prevResult[i - 1])
-            else:
-                newResult.append(
-                    min(newResult[i - 1] + insert_cost, prevResult[i] + delete_cost,
-                        prevResult[i - 1] + substitution_cost))
-
-        inputStringPos += 1
-        return levenshtein_distance_helper(dictionaryString, inputString, newResult, inputStringPos)
-
-    insert_cost = 1
-    substitution_cost = 2
-    delete_cost = 1
-    prevResult = [i for i in range(len(dictionaryString) + 1)]
-    return levenshtein_distance_helper(dictionaryString, inputString, prevResult, inputStringPos=0)
+            d[i + 1].append(min(d[i][j + 1] + 1,  # deletion
+                                d[i + 1][j] + 1,  # insertion
+                                d[i][j] + cost)  # substitution
+                            )
+    return d[m][n]
 
 
 # Call this function when making API calls.
