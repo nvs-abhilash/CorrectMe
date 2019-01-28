@@ -26,17 +26,17 @@ def levenshtein_distance(dictionaryString, inputString):
 
 
 # Call this function when making API calls.
-class editDistance:
+class EditDistance:
     def __init__(self, dist_func=levenshtein_distance):
         self._dist_func = dist_func
 
-    def get_edit_distance(self, dictionaryString, inputString):
-        dictionaryString = dictionaryString.lower()
-        inputString = inputString.lower()
+    def get_edit_distance(self, dictionary_string, input_string):
+        dictionary_string = dictionary_string.lower()
+        input_string = input_string.lower()
 
-        if dictionaryString == inputString:
+        if dictionary_string == input_string:
             edit_distance = 0
         else:
-            edit_distance = self._dist_func(dictionaryString, inputString)
+            edit_distance = self._dist_func(dictionary_string, input_string)
 
         return edit_distance

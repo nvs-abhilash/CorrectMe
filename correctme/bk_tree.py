@@ -78,30 +78,12 @@ def brute_query(word, words, distfn, n):
             if distfn(i, word) <= n]
 
 
-def maxdepth(tree, count=0):
+def max_depth(tree, count=0):
     _, children = tree
     if len(children):
-        return max(maxdepth(i, count + 1) for i in list(children.values()))
+        return max(max_depth(i, count + 1) for i in list(children.values()))
     else:
         return count
-
-
-# http://en.wikibooks.org/wiki/Algorithm_implementation/Strings/Levenshtein_distance#Python
-
-def levenshtein(s, t):
-    m, n = len(s), len(t)
-    d = [list(range(n + 1))]
-    d += [[i] for i in range(1, m + 1)]
-    for i in range(0, m):
-        for j in range(0, n):
-            cost = 1
-            if s[i] == t[j]: cost = 0
-
-            d[i + 1].append(min(d[i][j + 1] + 1,  # deletion
-                                d[i + 1][j] + 1,  # insertion
-                                d[i][j] + cost)  # substitution
-                            )
-    return d[m][n]
 
 
 def dict_words(dictfile):
