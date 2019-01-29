@@ -3,8 +3,6 @@
 
 CorrectMe is a context based auto-correction python package, also available with a GUI for demo purposes. It recommends correct words for misspellings by learning from the context.
 
-Currently the project is in very early stages, and no stable behavior can be expected.
-
 All contributions are welcomed :)
 
 ## Installation
@@ -20,13 +18,16 @@ cd CorrectMe # The cloned repository directory
 pip install .
 ```
 
-### Importing the package
+### Working with the package
 
 ```python
 import correctme
 ```
+Then you can call any of the `correctme` functions. 
 
-### Testing the installation
+**NOTE**: API docs are not present yet. Contributing to docs are welcome. (Issue [#27](https://github.com/nvs-abhilash/CorrectMe/issues/27))
+
+### Working with the GUI
 
 Type the below command in the terminal:
 ```bash
@@ -36,27 +37,20 @@ This will pop up the GUI for the project, and you would also see the predictions
 
 ## Current status of the project
 
-The project is in very early stages, and the packages don't have clear naming conventions, or lack documentation. This project was part of authors' Information Retrieval project. Work needs to be done to make it a useful python package.
+### Completed
+* Performs distance based and phoneme based corrections.
+* Installable Python library.
+* Workable Kivy GUI.
+* Almost complete test suite in pytest
 
-Contributions to this project in the form of opening relevant issues, submitting PRs for new code or documentation is highly welcomed.  
-
-Continuous development on this project cannot be guarenteed at the moment as the authors contribute to the project in their free time out of interest.
+### WIP
+* Still doesn't perform context based correction (Issue [#20](https://github.com/nvs-abhilash/CorrectMe/issues/20))
+* Lacks documentation API docs, and user documentation. (Issue [#27](https://github.com/nvs-abhilash/CorrectMe/issues/27))
 
 ## Algorithms used in the project
 
 The idea is to make a context based correction package, where the package would perform auto-corrections, provide suggestions for corrections as well.
 
-* Currently we have used bk_tree for finding closest words using Minimum Edit Distance.
-* Double metaphones to get closest words according to phonetics.
-
-Lots of future work has to be done with adding new and efficient algorithms to it.
-
-## GUI of the code
-
-Currently we are using `Kivy` for the GUI so as to support multiple platforms.   
-
-The GUI is very naive and not at all well documented. Lots of redundant codes are also present. Would like to change it ASAP. Adding issues for those also makes our work faster.
-
-## Documentation
-
-Currently lots of things are not documented well. Documentations explaining how to use the code base, simple tutorials explaining concepts are also useful and are definitly on the TODO lists of the authors. Any help is highly appreciated. Opening an issue for the same or submitting PRs are useful. I know said it many times now ;)
+* Currently used algorithms:
+  - `bk_tree` for finding closest words using Minimum Edit Distance.
+  - `double_metaphone` to get closest words according to phonetics.
