@@ -14,7 +14,7 @@ class CorrectMeView(GridLayout):
 
     def __init__(self, dataset, **kwargs):
         super().__init__(**kwargs)
-        self.tree, self.meta_dict = sm.initializeApp(dataset)
+        self.tree, self.meta_dict = sm.initialize_app(dataset)
         self.buttons = [self.button1, self.button2, self.button3, self.button4]
 
     def on_release(self, text):
@@ -31,7 +31,7 @@ class CorrectMeView(GridLayout):
         words = text.strip().split(' ')
         last_word = words[-1]
     
-        bktree_words, metaphone_words, intersect_words = sm.getSuggestion(last_word, self.tree, self.meta_dict)
+        bktree_words, metaphone_words, intersect_words = sm.get_suggestion(last_word, self.tree, self.meta_dict)
 
         # Need to form a list of four top words.
         # TODO: Need to change this algo in future for n-grams.

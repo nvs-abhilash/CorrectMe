@@ -3,7 +3,7 @@ from collections import defaultdict
 import fuzzy
 
 
-class doubleMetaphone:
+class DoubleMetaphone:
     _dmeta = fuzzy.DMetaphone()
 
     def __init__(self, dataset_file):
