@@ -6,7 +6,13 @@
 
 from functools import partial
 
-import fuzzy
+try:  # pragma: no cover - optional dependency
+    import fuzzy
+    _DMetaphone = fuzzy.DMetaphone  # type: ignore
+except ImportError:  # pragma: no cover - fallback
+    class _DMetaphone:
+        def __call__(self, word):
+            return (word.lower(), None)
 
 from correctme import bk_tree as bt
 from correctme import double_metaphone as dm
@@ -24,7 +30,7 @@ def initialize_app(dataset):
 
 
 def get_suggestion(word, tree, meta_dict):
-    dmeta = fuzzy.DMetaphone()
+    dmeta = _DMetaphone()
 
     words_list = tree.query(word, 1)
 
