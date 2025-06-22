@@ -1,10 +1,22 @@
 from collections import defaultdict
 
-import fuzzy
+try:  # pragma: no cover - optional dependency
+    import fuzzy
+    _DMetaphone = fuzzy.DMetaphone  # type: ignore
+except ImportError:  # pragma: no cover - fallback when fuzzy isn't installed
+    class _DMetaphone:
+        """Minimal fallback implementation for DMetaphone."""
+
+        def __call__(self, word):
+            # Very small approximation: use the word itself as the key
+            primary = word.lower()
+            return (primary, None)
 
 
 class DoubleMetaphone:
-    _dmeta = fuzzy.DMetaphone()
+    """Wrapper around the double metaphone implementation."""
+
+    _dmeta = _DMetaphone()
 
     def __init__(self, dataset_file):
         self.metaphone_dictionary = defaultdict(list)

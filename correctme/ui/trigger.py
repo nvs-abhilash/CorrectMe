@@ -2,7 +2,6 @@ from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 
-import fuzzy
 import sys
 sys.path.insert(0, '../')
 
